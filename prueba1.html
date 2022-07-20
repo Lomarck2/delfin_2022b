@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo OBJ</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.2.2/aframe-ar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script>
+        AFRAME.registerComponent('markerhandler', {
+          schema: { 
+            iden: {type: 'string', default: ''}
+          },
+          init: function () {
+            console.log('Marcador ' + this.data.iden + ' encontrado');
+          },
+          update: function () {
+            console.log('Marcador ' + this.data.iden + ' encontrado');
+          }
+
+        });
+    </script>
+</head>
+<body>
+    <!-- La escena donde se mostrara la realidad aumentada-->
+    <a-scene 
+        vr-mode-ui="enabled: false;" 
+        renderer="logarithmicDepthBuffer: true; precision: medium;" 
+        embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+    >
+        <a-marker markerhandler="iden: 0" type='barcode' value='0' id="barcode0">
+            <a-box material="color: blue; opacity: 0.5"></a-box>
+        </a-marker>
+        <a-marker markerhandler="iden: 1" type='barcode' value='1' id="barcode1">
+        <!-- <a-marker markerhandler type="pattern" preset="custom" url="/markers/pattern-pattern-marker_0.patt" id="patron0"> -->
+            <a-icosahedron color="#FF926B" radius="1"></a-icosahedron>
+            <!-- <a-box material="color: red; opacity: 0.5"></a-box> -->
+        </a-marker> 
+        <a-marker markerhandler="iden: 6" type='barcode' value='6' id="barcode6">
+            <a-torus-knot color="#B84A39" arc="180" p="2" q="3" radius="0.5" radius-tubular="0.1" rotation="90 0 0"></a-torus-knot>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    
+</body>
+</html>
