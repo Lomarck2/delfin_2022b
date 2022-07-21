@@ -42,7 +42,6 @@
     <script>
       var zoom = 1;       
       function fnc_zoom(param){
-        //console.log("zoom "+param);
         switch(param){
           case 1:
             zoom += 0.1; //zoom = zoom + 0.1;
@@ -51,12 +50,12 @@
             zoom -= 0.1; //zoom = zoom - 0.1;
             break;
         }
-        var selec = document.getElementById('seleccion');
-        var marcadorNum = selec.value;        
-        var marcador = document.querySelector('#barcode'+marcadorNum);
-        var figura = marcador.querySelector(':scope > .child');
-        //console.log(figura);
-        figura.setAttribute('scale',{x: zoom, y: zoom, z: zoom});
+        
+        var selec = document.getElementById('seleccion'); //se encuentra el select option
+        var marcadorNum = selec.value;                    //se obtiene el valor de la opcion seleccionada        
+        var marcador = document.querySelector('#barcode'+marcadorNum); //Seleccionar el barcode asociado el valor del select
+        var figura = marcador.querySelector(':scope > .child');       //se recupera el objeto hijo del marcador seleccionado
+        figura.setAttribute('scale',{x: zoom, y: zoom, z: zoom});     //Se cambia el atributo de escala
       };
 
       function fnc_rot(param){
